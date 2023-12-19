@@ -1,0 +1,27 @@
+{
+    "name": "Rename Your Tabs",
+    "version": "0.0.0.1",
+    "manifest_version": 3,
+    "description": "An extension to rename tab.",
+    "permissions": [
+        "scripting",
+        "storage",
+        "activeTab",
+        "tabs"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "icons": {
+        "16": "icons/bear16.png",
+        "32": "icons/bear32.png",
+        "48": "icons/bear48.png",
+        "128": "icons/bear128.png"
+    },
+    "action": {
+        "default_popup": "popup/index.html"
+    },
+    "background": {
+        "service_worker": "popup/background.js"
+     }
+}
