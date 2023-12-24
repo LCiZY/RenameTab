@@ -5,28 +5,31 @@ function isJSON(str) {
       JSON.parse(str);
       return true;
     } catch (error) {
+      console.error('invalid json str', str)
       return false;
     }
-  }
+}
 
-function handleInput(event) {
+function handleRuleChange(event) {
     const textareaValue = event.target.value;
-    console.log('文本框内容变化：', textareaValue);
+    console.log('rule changed: ', textareaValue);
     if(isJSON(textareaValue)) {
-        chrome.storage.local.set({ 'url_2_rules': textareaValue }, function() {
-            console.log('规则已写入到本地存储');
+        // write to local storage
+        chrome.storage.local.set({ 'rule_cfg': textareaValue }, function() {
+            console.log('rule_cfg set');
         });
+
     }
 }
 
 function setTextareaContent() {
-    chrome.storage.local.get('url_2_rules', function(result) {
-        console.log('url_2_rules=', result['url_2_rules']);
-        textarea.value = result['url_2_rules'];
+    chrome.storage.local.get('rule_cfg', function(result) {
+        console.log('loaded rule_cfg=', result['rule_cfg']);
+        textarea.value = result['rule_cfg'];
     });
 }
 
 
 setTextareaContent()
 
-textarea.addEventListener('input', handleInput);
+textarea.addEventListener('input', handleRuleChange);
