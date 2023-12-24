@@ -13,7 +13,7 @@ chrome.runtime.onInstalled.addListener(function () {
     chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
         // 检查标题变化
         if (changeInfo.title) {
-            // 获取当前标签页的标题
+            // 根据规则更新标题
             updateTabTitle(tabId, tab.url)
         }
     });
